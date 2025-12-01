@@ -5,13 +5,15 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "_comentario": "tirando o ^ das dependencias para travar a versao",
   "dependencies": {
-    "express": "5.1.0"
+    "express": "5.1.0",
+    "nodemon": "3.1.11",
+    "pm2": "6.0.14"
   }
 }
