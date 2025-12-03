@@ -3,7 +3,7 @@ const app = express();
 
 app.use(express.json());
 
-const userRoutes = require('./routes/user.routes');
+const userRoutes = require('./routes/prod.routes');
 app.use('/api/users', userRoutes);
 
 module.exports = app;

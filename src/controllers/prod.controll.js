@@ -1,17 +1,21 @@
-let users = [
+let prod = [
     { id: 1, name: 'relogio'},
     { id: 2, name: 'celular'},
+    { id: 3, name: 'tablet'},
+    { id: 4, name: 'notebook'},
+    { id: 5, name: 'monitor'},
+    { id: 6, name: 'teclado' }
 ];
 module.exports = {
-    listUsers: (req, res) => {
-        res.json(users);
+    listprod: (req, res) => {
+        res.json(prod);
     },
     getUser: (req, res) => {
         const id = Number(req.params.id);
-        const user = users.find(u => u.id === id);
+        const user = prod.find(u => u.id === id);
 
         if (!user) {
-            return res.status(404).json({ message: 'Usuari nao encontrado ' });
+            return res.status(404).json({ message: 'Produto nao encontrado ' });
         }
         res.json(user);
     },
@@ -24,10 +28,10 @@ module.exports = {
             id: Date.now(),
             name,
         };
-        users.push(newUser);
+        prod.push(newUser);
 
         res.status(201).json({
-            message: 'Usuario criado com sucesso',
+            message: 'Produto criado com sucesso',
             user: newUser,
         });
     },
@@ -35,27 +39,27 @@ module.exports = {
         const id = Number(req.params.id);
         const { name } = req.body;
 
-        const index = users.findIndex(u => u.id === id);
+        const index = prod.findIndex(u => u.id === id);
         if (index === -1) 
-            return res.status(404).json({ message: 'Usuario nao encontrado' });
+            return res.status(404).json({ message: 'Produto nao encontrado' });
         
-        users[index].name = name || users[index].name;
+        prod[index].name = name || prod[index].name;
         res.json({
-            message: 'Usuario atualizado com sucesso',
-            user: users[index]
+            message: 'Produto atualizado com sucesso',
+            user: prod[index]
         });
     },    
     deleteUser: (req, res) => {
         const id = Number(req.params.id);
-        const exists = users.some(u => u.id === id);
+        const exists = prod.some(u => u.id === id);
 
         if (!exists) 
-            return res.status(404).json({ message: 'Usuario nao encontrado' });
+            return res.status(404).json({ message: 'Produto nao encontrado' });
         
-        users = users.filter(u => u.id !== id);
+        prod = prod.filter(u => u.id !== id);
 
         res.json({ 
-            message: 'Usuario deletado com sucesso' 
+            message: 'Produto deletado com sucesso' 
         });
     }
 }
